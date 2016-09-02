@@ -1,6 +1,6 @@
-var KEY_VIEWED = 'goodnews_viewed';
-var KEY_LINKS  = 'goodnews_links';
-var KEY_TIMESTAMP = 'goodnews_timestamp';
+var KEY_VIEWED = 'gn_viewed';
+var KEY_LINKS  = 'gn_links';
+var KEY_TIMESTAMP = 'gn_timestamp';
 
 function getNow() {
   return Math.floor(Date.now() / 1000);
@@ -35,7 +35,7 @@ function main() {
 }
 
 function fetchLinks(callback) {
-  return reddit.hot('goodnews').limit(25).fetch(function(res) {
+  return reddit.top('upliftingnews').t('today').limit(25).fetch(function(res) {
 
     var links = res.data.children || [];
 
@@ -49,6 +49,7 @@ function fetchLinks(callback) {
     });
 
     localStorage.setItem(KEY_LINKS, JSON.stringify(links));
+    localStorage.setItem(KEY_VIEWED, JSON.stringify([]));
     localStorage.setItem(KEY_TIMESTAMP, getNow());
 
     return callback(links);
@@ -58,7 +59,7 @@ function fetchLinks(callback) {
 function processLinks(links) {
   var items = JSON.parse(localStorage.getItem(KEY_VIEWED)) || [];
 
-  if (items.length >= 25) {
+  if (items.length >= links.length) {
     items = [];
   }
 
