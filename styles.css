@@ -1,0 +1,69 @@
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.grad-1 {
+  background-image: linear-gradient(45deg, #44E32D, #7EED3E);
+}
+
+.grad-2 {
+  background-image: linear-gradient(45deg, #41E3B9, #52EDA7);
+}
+
+.grad-3 {
+  background-image: linear-gradient(45deg, #0A85E3, #19B7ED);
+}
+
+.grad-4 {
+  background-image: linear-gradient(45deg, #6200E3, #3A00ED);
+}
+
+.grad-5 {
+  background-image: linear-gradient(45deg, #FF005D, #D60099);
+}
+
+.wrapper {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.container {
+  padding: 0 50px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.link-title {
+  font-weight: 800;
+  font-size: 50px;
+  letter-spacing: 4px;
+  text-decoration: none;
+  color: white;
+
+  animation: fadein 0.5s;
+}
+
+.link-title:hover {
+  text-decoration: underline;
+}
+
+.link-source {
+  margin-top: 20px;
+  font-size: 16px;
+  color: white;
+
+  animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
