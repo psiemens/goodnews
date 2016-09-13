@@ -21,19 +21,6 @@ function guid() {
   });
 }
 
-function main() {
-
-  var links = JSON.parse(localStorage.getItem(KEY_LINKS)),
-      timestamp = parseInt(localStorage.getItem(KEY_TIMESTAMP), 10) || 0;
-
-  if ( !isStale(timestamp) && links) {
-    processLinks(links);
-  } else {
-    fetchLinks(processLinks);
-  }
-
-}
-
 function fetchLinks(callback) {
   return reddit.top('upliftingnews').t('today').limit(25).fetch(function(res) {
 
@@ -77,15 +64,26 @@ function renderLink(link) {
 
   var $title = $('<a class="link-title">');
 
-  $title.text(link.title);
-  $title.attr('href', link.url);
+  $title.text(link.title).attr('href', link.url);
 
   var $source = $('<div class="link-source">');
 
   $source.text(link.domain);
 
-  $('.container').append($title);
-  $('.container').append($source);
+  $('.container').append($title).append($source);
+}
+
+function main() {
+
+  var links = JSON.parse(localStorage.getItem(KEY_LINKS)),
+      timestamp = parseInt(localStorage.getItem(KEY_TIMESTAMP), 10) || 0;
+
+  if ( !isStale(timestamp) && links ) {
+    processLinks(links);
+  } else {
+    fetchLinks(processLinks);
+  }
+
 }
 
 main();
